@@ -8,16 +8,37 @@ const NotFound = lazy(() => import('./pages/404'));
 export default function App() {
   return (
     <>
-      <NavLink href="/" end>
-        Home
-      </NavLink>
-      <NavLink href="/about">About</NavLink>
+      <div class="container py-3 h-100 d-flex flex-column">
+        <header class="border-bottom pb-3 d-flex align-items-center justify-content-between">
+          <span class="navbar-brand">
+            <i class="bi bi-calendar3"></i>
+            <span class="ms-2">Today</span>
+          </span>
 
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/" element={<Home />} />
-        <Route path="**" element={<NotFound />} />
-      </Routes>
+          <nav>
+            <ul class="list-unstyled d-flex m-0">
+              <li>
+                <NavLink href="/" end class="text-decoration-none text-dark">
+                  Home
+                </NavLink>
+              </li>
+              <li class="ms-2">
+                <NavLink href="/about" class="text-decoration-none text-dark">
+                  About
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <main class="flex-fill overflow-auto pt-3">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/" element={<Home />} />
+            <Route path="**" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
     </>
   );
 }
