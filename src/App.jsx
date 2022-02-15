@@ -14,7 +14,12 @@ export default function App() {
         <header class="border-bottom pb-3 d-flex align-items-center justify-content-between">
           <span class="navbar-brand">
             <i class="bi bi-calendar3"></i>
-            <span class="ms-2">Today</span>
+          </span>
+
+          <span>
+            <i class="bi bi-caret-left"></i>
+            <span class="mx-2">Today</span>
+            <i class="bi bi-caret-right"></i>
           </span>
 
           <nav>
