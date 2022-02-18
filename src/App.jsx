@@ -1,5 +1,5 @@
 import { lazy } from 'solid-js';
-import { Routes, Route, NavLink } from 'solid-app-router';
+import { Routes, Route, NavLink, useLocation } from 'solid-app-router';
 
 const About = lazy(() => import('./pages/about'));
 const Today = lazy(() => import('./pages/index'));
@@ -8,6 +8,8 @@ const Month = lazy(() => import('./pages/month'));
 const NotFound = lazy(() => import('./pages/404'));
 
 export default function App() {
+  const location = useLocation();
+
   return (
     <>
       <div class="container py-3 h-100 d-flex flex-column">
@@ -18,7 +20,15 @@ export default function App() {
 
           <span>
             <i class="bi bi-caret-left"></i>
-            <span class="mx-2">Today</span>
+            <span class="mx-2">
+              <Switch fallback={'Today'}>
+                <Match when={location.pathname === '/'}>{'Today'}</Match>
+                <Match when={location.pathname === '/week'}>{'Week'}</Match>
+                <Match when={location.pathname === '/month'}>{'Month'}</Match>
+                <Match when={location.pathname === '/about'}>{'About'}</Match>
+                <Match when={location.pathname === '**'}>{'Error'}</Match>
+              </Switch>
+            </span>
             <i class="bi bi-caret-right"></i>
           </span>
 
