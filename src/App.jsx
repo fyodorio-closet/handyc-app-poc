@@ -1,6 +1,8 @@
 import { lazy } from 'solid-js';
 import { Routes, Route, NavLink, useLocation } from 'solid-app-router';
 
+import { isTwentyFourMode, setIsTwentyFourMode } from './utils/hourLabels';
+
 const About = lazy(() => import('./pages/about'));
 const Today = lazy(() => import('./pages/index'));
 const Week = lazy(() => import('./pages/week'));
@@ -9,6 +11,8 @@ const NotFound = lazy(() => import('./pages/404'));
 
 export default function App() {
   const location = useLocation();
+
+  const currentTimeMode = () => (isTwentyFourMode() ? '24H' : 'AM/PM');
 
   return (
     <>
@@ -32,7 +36,11 @@ export default function App() {
             <i class="bi bi-caret-right"></i>
           </span>
 
-          <nav>
+          <nav class="d-flex align-items-center">
+            <button class="btn btn-secondary me-3" onClick={() => setIsTwentyFourMode(!isTwentyFourMode())}>
+              {currentTimeMode()}
+            </button>
+
             <ul class="list-unstyled d-flex m-0">
               <li>
                 <NavLink href="/" end class="text-decoration-none text-dark">

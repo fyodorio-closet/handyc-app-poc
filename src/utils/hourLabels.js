@@ -1,0 +1,61 @@
+import { createSignal } from 'solid-js';
+
+export const hourLabels24h = [
+  '00:00',
+  '01:00',
+  '02:00',
+  '03:00',
+  '04:00',
+  '05:00',
+  '06:00',
+  '07:00',
+  '08:00',
+  '09:00',
+  '10:00',
+  '11:00',
+  '12:00',
+  '13:00',
+  '13:00',
+  '14:00',
+  '16:00',
+  '17:00',
+  '18:00',
+  '19:00',
+  '20:00',
+  '21:00',
+  '22:00',
+  '23:00',
+  '00:00',
+];
+
+export const hourLabelsAmPm = [
+  '12am',
+  '1am',
+  '2am',
+  '3am',
+  '4am',
+  '5am',
+  '6am',
+  '7am',
+  '8am',
+  '9am',
+  '10am',
+  '11am',
+  '12pm',
+  '1pm',
+  '2pm',
+  '3pm',
+  '4pm',
+  '5pm',
+  '6pm',
+  '7pm',
+  '8pm',
+  '9pm',
+  '10pm',
+  '11pm',
+  '12am',
+];
+
+export const [isTwentyFourMode, setIsTwentyFourMode] = createSignal(true);
+
+export const hourLabels = () => (isTwentyFourMode() ? hourLabels24h : hourLabelsAmPm);
