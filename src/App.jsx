@@ -2,6 +2,7 @@ import { lazy } from 'solid-js';
 import { Routes, Route, NavLink, useLocation } from 'solid-app-router';
 
 import { isTwentyFourMode, setIsTwentyFourMode } from './utils/hourLabels';
+import { isSundayFirst, setIsSundayFirst } from './utils/weekDays';
 
 const About = lazy(() => import('./pages/about'));
 const Today = lazy(() => import('./pages/index'));
@@ -13,6 +14,7 @@ export default function App() {
   const location = useLocation();
 
   const currentTimeMode = () => (isTwentyFourMode() ? '24H' : 'AM/PM');
+  const currentDayMode = () => (isSundayFirst() ? 'US weekdays' : 'ISO 8601 weekdays');
 
   return (
     <>
@@ -37,6 +39,10 @@ export default function App() {
           </span>
 
           <nav class="d-flex align-items-center">
+            <button class="btn btn-secondary me-3" onClick={() => setIsSundayFirst(!isSundayFirst())}>
+              {currentDayMode()}
+            </button>
+
             <button class="btn btn-secondary me-3" onClick={() => setIsTwentyFourMode(!isTwentyFourMode())}>
               {currentTimeMode()}
             </button>
